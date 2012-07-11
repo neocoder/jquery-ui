@@ -77,7 +77,15 @@
 				$('select#speedA').selectmenu('disableByValue', '11');
 			});
 
-			
+			$('#disableAll').click(function(e){
+				e.preventDefault();
+				$('select#speedA').selectmenu('disableAll');
+			});
+
+			$('#enableAll').click(function(e){
+				e.preventDefault();
+				$('select#speedA').selectmenu('enableAll');
+			});
 
 		});	
 	</script>
@@ -96,7 +104,10 @@
 		<hr>
 		<a href="#nogo" id="disableSlow">Disable "Slow" option</a><br>
 		<a href="#nogo" id="disable11">Disable "Up to eleven" option</a><br>
-		<a href="#nogo" id="disableEverythingButSlow">Disable everything but "Slow"</a>
+		<a href="#nogo" id="disableEverythingButSlow">Disable everything but "Slow"</a><br>
+		<a href="#nogo" id="disableAll">Disable All</a><br>
+		<a href="#nogo" id="enableAll">Enable All</a>
+
 
 		<br />
 		<h2>"default popup" Style</h2>

@@ -827,6 +827,26 @@ $.widget("ui.selectmenu", {
 		return found;
 	},
 
+	disableAll: function() {
+		var self = this;
+		this.element.find('option').each(function(i, opt){
+			if ( !opt.disabled ) {
+				self.disable(opt.index);
+			}
+		});		
+		this.disable();
+	},
+
+	enableAll: function() {
+		var self = this;
+		if ( this.options.disabled ) {
+			this.enable();
+		}
+		this.element.find('option').each(function(i, opt){
+			self.enable(opt.index);
+		});		
+	},	
+
 	disableByValue: function(val) {
 		var idx = this.indexByValue(val);
 		if ( idx !== null ) {

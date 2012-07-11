@@ -25,26 +25,60 @@
 			var speedA = $('select#speedA').selectmenu();
 			
 			$("#index").click(function(event){
+				event.preventDefault();
 				console.log($('select#speedA').selectmenu("index"));
 			});
 			$("#indexNumber").click(function(event){
+				event.preventDefault();
 				console.log($('select#speedA').selectmenu("index", 4));
 			});
 			$("#value").click(function(event){
+				event.preventDefault();
 				console.log($('select#speedA').selectmenu("value"));
 			});
 			$("#valueString").click(function(event){
+				event.preventDefault();
 				console.log($('select#speedA').selectmenu("value", "Medium"));
 			});
 			$("#valueNumber").click(function(event){
+				event.preventDefault();
 				console.log($('select#speedA').selectmenu("value", 4));
 			});
 			$("#valueNumberAsString").click(function(event){
+				event.preventDefault();
 				console.log($('select#speedA').selectmenu("value", "11"));
 			});
 			$("#valueNonExisting").click(function(event){
+				event.preventDefault();
 				console.log($('select#speedA').selectmenu("value", "test123"));
 			});
+
+			// Alex L.
+
+			$('#disableSlow').click(function(e){
+				e.preventDefault();
+				$('select#speedA').selectmenu('disableByValue', 'Slow');				
+			});
+
+			$('#disable11').click(function(e){
+				e.preventDefault();
+				$('select#speedA').selectmenu('disableByValue', '11');
+			});
+
+			$('#disableEverythingButSlow').click(function(e){
+				e.preventDefault();
+
+				$('select#speedA').selectmenu('enableByValue', 'Slow');
+
+				$('select#speedA').selectmenu('disableByValue', 'Slower');
+				$('select#speedA').selectmenu('disableByValue', 'Medium');
+				$('select#speedA').selectmenu('disableByValue', 'Fast');
+				$('select#speedA').selectmenu('disableByValue', 'Faster');
+				$('select#speedA').selectmenu('disableByValue', '11');
+			});
+
+			
+
 		});	
 	</script>
 </head>
@@ -59,6 +93,11 @@
 		<a href="#nogo" id="valueNumber">method value with  paramater '4' (passed as number)</a><br />
 		<a href="#nogo" id="valueNumberAsString">method value with  paramater '11' (passed as string)</a><br />
 		<a href="#nogo" id="valueNonExisting">method value with  paramater 'test123' (not existing value)</a>
+		<hr>
+		<a href="#nogo" id="disableSlow">Disable "Slow" option</a><br>
+		<a href="#nogo" id="disable11">Disable "Up to eleven" option</a><br>
+		<a href="#nogo" id="disableEverythingButSlow">Disable everything but "Slow"</a>
+
 		<br />
 		<h2>"default popup" Style</h2>
 		<fieldset>

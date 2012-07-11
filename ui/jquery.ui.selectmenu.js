@@ -803,6 +803,60 @@ $.widget("ui.selectmenu", {
 		}
 	},
 
+	indexByValue: function(val) {
+		var idx = null;
+		this.element.find('option').each(function(i, opt){
+			if ( opt.value == val ) {
+				idx = opt.index;
+				return false;
+			}
+		});
+		return idx;
+	},
+
+	_isEnabled: function(idx) {
+		var self = this,
+			found = null;
+
+		this.element.find('option').each(function(i, opt){
+			if ( opt.index == idx ) {
+				found = !opt.disabled;
+				return false;
+			}
+		});
+		return found;
+	},
+
+	disableByValue: function(val) {
+		var idx = this.indexByValue(val);
+		if ( idx !== null ) {
+			if ( this.index() == idx ) {
+
+				if ( this._isEnabled(idx+1) ) {
+					this.index(idx+1);
+				} else if ( this._isEnabled(idx-1) ) {
+					this.index(idx-1);
+				} else {
+					this.disable();
+				}
+				
+			}			
+			this.disable(idx);
+		}
+	},
+
+	enableByValue: function(val) {
+		var idx = this.indexByValue(val);
+		if ( idx ) {
+
+			if ( this.options.disabled ) {
+				this.enable();
+			}
+
+			this.enable(idx);
+		}
+	},	
+
 	value: function(newValue) {
 		if (arguments.length) {
 			this.element[0].value = newValue;
